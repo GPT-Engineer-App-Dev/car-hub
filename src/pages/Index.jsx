@@ -1,10 +1,15 @@
+import { useState } from "react";
 import { Container, Text, VStack, Heading, Button, Box, Image } from "@chakra-ui/react";
 import CarSearch from "../components/CarSearch.jsx";
+import BookingConfirmation from "../components/BookingConfirmation.jsx";
 
 const Index = () => {
+  const [bookingDetails, setBookingDetails] = useState(null);
+
   const handleSearch = (searchCriteria) => {
     console.log("Search criteria:", searchCriteria);
     // Implement search logic here
+    setBookingDetails(searchCriteria); // Set booking details for confirmation
   };
 
   return (
@@ -23,6 +28,7 @@ const Index = () => {
         <Button colorScheme="teal" size="lg">
           Book Your Ride
         </Button>
+        {bookingDetails && <BookingConfirmation details={bookingDetails} />}
       </VStack>
     </Container>
   );
